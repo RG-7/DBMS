@@ -65,3 +65,39 @@ SELECT Ename FROM Emp WHERE Ename LIKE '%A%' OR Ename LIKE '%a%';
 /*
     Q9) Display the name of the employees whose second char is ‘b’ or ‘B’ ?
 */
+SELECT Ename FROM Emp WHERE UPPER(SUBSTR(Ename, 2, 1)) = 'B';
+
+/*
+    Q10) Display the name of the employees whose first or last char is ‘a’ or ‘A’ ?
+*/
+SELECT Ename FROM Emp WHERE UPPER(SUBSTR(Ename,1,1))='A' OR UPPER(SUBSTR(Ename,-1,1))='A';
+
+/*
+    Q11) Display maximum, minimum, average salary of deptno 10 employees.
+*/
+SELECT MAX(Salary) as MaxSalary, MIN(Salary) as MinSalary, AVG(Salary) as AvgSalary FROM Emp WHERE DeptNo = 10;
+
+/*
+    Q12) Display total number of employees working in deptno 20
+*/
+SELECT COUNT(*) AS TotalEmployees FROM Emp WHERE DeptNo = 20;
+
+/*
+    Q13) Display total salary paid to clerks
+*/
+SELECT SUM(Salary) AS TotalSalary FROM Emp WHERE Job='Clerk'; 
+
+/*
+    Q14) Display system date
+*/
+SELECT SYSDATE AS CurrentDate FROM dual;
+
+/*
+    Q15) Display the result of (12*12)/13
+*/
+SELECT (12 * 12) / 13 AS res FROM dual;
+
+/*
+    Q16) Display info of ‘raj’ irrespective to the case in which the data is stored.
+*/
+Select * from Emp where LOWER(Ename)='sara';
