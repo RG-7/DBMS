@@ -64,3 +64,29 @@ SELECT Empno,Name,Date_of_joining FROM EMP WHERE TO_CHAR(Date_of_joining,'MONTH'
 SELECT * FROM EMP WHERE Date_of_joining >= SYSDATE-30;
 
 -- Queries based on Train Arrival and Departure
+-- 17.) Create a table Train having four columns (TrainNo Number (6) primary key, date of departure, time of departure, time of arrival)
+CREATE TABLE Train(
+    TrainNo NUMBER(6) PRIMARY KEY,
+    Date_of_Departure DATE,
+    Time_of_Departure TIMESTAMP,
+    Time_of_Arrival TIMESTAMP
+);
+
+-- 18.) Insert five records into the table Train.
+INSERT INTO Train VALUES (101, TO_DATE('2023-03-15', 'YYYY-MM-DD'), TO_TIMESTAMP('08:00:00', 'HH24:MI:SS'), TO_TIMESTAMP('12:00:00', 'HH24:MI:SS'));
+INSERT INTO Train VALUES (102, TO_DATE('2023-03-16', 'YYYY-MM-DD'), TO_TIMESTAMP('10:30:00', 'HH24:MI:SS'), TO_TIMESTAMP('14:45:00', 'HH24:MI:SS'));
+INSERT INTO Train VALUES (103, TO_DATE('2023-03-17', 'YYYY-MM-DD'), TO_TIMESTAMP('14:00:00', 'HH24:MI:SS'), TO_TIMESTAMP('18:30:00', 'HH24:MI:SS'));
+INSERT INTO Train VALUES (104, TO_DATE('2023-03-18', 'YYYY-MM-DD'), TO_TIMESTAMP('16:45:00', 'HH24:MI:SS'), TO_TIMESTAMP('21:15:00', 'HH24:MI:SS'));
+INSERT INTO Train VALUES (105, TO_DATE('2023-03-19', 'YYYY-MM-DD'), TO_TIMESTAMP('20:15:00', 'HH24:MI:SS'), TO_TIMESTAMP('01:30:00', 'HH24:MI:SS'));
+
+-- 19.) Display all the three records
+SELECT * FROM Train;
+
+-- 20.) Display the time values inserted in the columns
+SELECT TrainNo, Time_of_Departure, Time_of_Arrival FROM Train;
+
+-- 21.) Display those trains which arrived on PM
+SELECT TrainNo, Date_of_Departure, Time_of_Departure, Time_of_Arrival FROM Train WHERE EXTRACT(HOUR FROM Time_of_Arrival) > 12;
+
+-- 22.) Display train number who are going to depart in next one hour.
+SELECT TrainNo, Time_of_Departure FROM Train WHERE Time_of_Departure BETWEEN SYSTIMESTAMP AND SYSTIMESTAMP + INTERVAL '1' HOUR;
