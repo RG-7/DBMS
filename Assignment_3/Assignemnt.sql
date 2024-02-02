@@ -101,3 +101,37 @@ SELECT GREATEST(3584,3475843,437586374385,325432,35434,3543,33232,575) FROM DUAL
 
 -- 32. least(expr):
 SELECT LEAST(3584,3475843,437586374385,325432,35434,3543,33232,575) FROM DUAL;
+
+-- Creating the employee's table
+CREATE TABLE employees (
+    emp_id NUMBER PRIMARY KEY,
+    emp_name VARCHAR(50),
+    emp_salary FLOAT,
+    emp_commission FLOAT,
+    hiredate DATE
+);
+
+-- Inserting dummy data
+INSERT INTO employees VALUES(1, 'Ratn', 50000.00, 2000.00, TO_DATE('1985-01-15', 'YYYY-MM-DD'));
+INSERT INTO employees VALUES(2, 'Kiran', 60000.00, 2500.00, TO_DATE('2022-01-20', 'YYYY-MM-DD'));
+INSERT INTO employees VALUES(3, 'Yash', 70000.00, 3000.00, TO_DATE('2022-03-10', 'YYYY-MM-DD'));
+
+select * from employees;
+
+-- Q2) Display the current time in hour: min : sec format
+SELECT TO_CHAR(CURRENT_TIMESTAMP, 'HH24:MI:SS') AS CurrentTime FROM DUAL;
+
+-- Q3) Display salary + commission of emp table
+SELECT emp_salary + emp_commission FROM employees;
+
+-- Q4) Store any date value in hiredate column of the table?
+INSERT INTO employees VALUES(4,'Ravi',500,12,TO_DATE('1982-12-23','YYYY-MM_DD'));
+
+-- Q5) Display name of employee(s) who join the company in 1985 ?
+SELECT emp_name FROM employees WHERE EXTRACT(YEAR FROM hiredate) = 1985;
+
+-- Q6) Display name of the employee(s) who join the company this year ?
+-- INSERTING DATA FOR PRE-REQUISITES
+INSERT INTO employees VALUES(5, 'Verma', 7100.00, 200.00, CURRENT_DATE);
+--Code---
+SELECT emp_name FROM employees WHERE EXTRACT(YEAR FROM hiredate)= EXTRACT(YEAR FROM CURRENT_DATE);
